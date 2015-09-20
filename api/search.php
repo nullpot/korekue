@@ -37,9 +37,9 @@ $rand      = mt_rand(0, count($shops) - 1);
 $choseShop = get_object_vars($shops[$rand]);
 
 //必要な情報をすべて格納する。
-$data['name']      = $choseShop['name']."[";
+$data['name']      = $choseShop['name'];
 $data['latitude']  = $choseShop['latitude'];
-$data['longitude'] = $choseShop['longitude']."]";
+$data['longitude'] = $choseShop['longitude'];
 $data['category']  = $choseShop['category'];
 $data['tel']       = $choseShop['tel'];
 $data['opentime']  = $choseShop['opentime'];
@@ -51,4 +51,4 @@ if(empty($data['image_url'])){
 
 $data = json_encode($data);
 //JSONを返却
-echo $data;
+echo "[".$data."]";
