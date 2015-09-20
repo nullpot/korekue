@@ -43,11 +43,11 @@ $data['longitude'] = $choseShop['longitude'];
 $data['category']  = $choseShop['category'];
 $data['tel']       = $choseShop['tel'];
 $data['opentime']  = $choseShop['opentime'];
-//$data['image_url'] = $choseShop->image_url['shop_image1'];
+$data['image_url'] = get_object_vars($choseShop['image_url'])['shop_image1'];
 
-//if($data['image_url'] == "") {
+if(empty($data['image_url'])){
     $data['image_url'] = "./images/noimg.jpg";
-//}
+}
 
 $data = json_encode($data);
 //JSONを返却
