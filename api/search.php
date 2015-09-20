@@ -32,9 +32,6 @@ foreach($xml->rest as $item){
     $shops[] = $item;
 }
 
-echo "<pre>";
-var_dump($shops);
-
 //ランダムでお店を選定
 $rand      = mt_rand(0, count($shops) - 1);
 $choseShop = get_object_vars($shops[$rand]);
