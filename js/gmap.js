@@ -25,14 +25,13 @@ function initialize() {
     g_map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     g_coder = new google.maps.Geocoder();
 
-    var setMarker = function(){
+    var setMarker = function(pos){
         g_marker = new google.maps.Marker({
             map: g_map,
             draggable: false,
             animation: google.maps.Animation.DROP,
-            position: g_myLatlng
+            position: pos
         });
-//        google.maps.event.addListener(g_marker, 'click', toggleBounce);
     };
 
     if( !navigator ){
@@ -54,8 +53,8 @@ function initialize() {
                 lng : curLng,
             }
         }).done(function(res){
-            var json = $.parseJSON(res)
-            var shopPos = new google.maps.LatLng(json[0].latitude, json[0].longitude);
+            var json = $.parseJSON(res);
+            var shopPos = new google.maps.LatLng(parseFloat(json[0].latitude), parseFloat(json[0].longitude));
             setMarker(shopPos);
             var shopName = json[0].name;
             var openTime = json[0].opentime;
