@@ -9,6 +9,10 @@ body {
     font-family: FlopDesignFONT;
 }
 
+li {
+    list-style: none;
+}
+
 .Gmap{
     width: 100%;
     height: 300px;
