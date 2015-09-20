@@ -28,7 +28,7 @@ function initialize() {
     var setMarker = function(){
         g_marker = new google.maps.Marker({
             map: g_map,
-            draggable: true,
+            draggable: false,
             animation: google.maps.Animation.DROP,
             position: g_myLatlng
         });
@@ -75,7 +75,6 @@ function initialize() {
         g_myLatlng = new google.maps.LatLng(ev.coords.latitude, ev.coords.longitude);
         g_map.setCenter(g_myLatlng);
         searchKorekue(ev.coords.latitude, ev.coords.longitude);
-        setMarker();
         md.fadeOut("200", function(){
             md.remove();
         });
