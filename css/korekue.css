@@ -41,6 +41,8 @@ div.CenterMiddle {
     margin-bottom: 10px;
 }
 
-.container img{
-    width: 100%;
+li.ImageBox img{
+    max-width: 300px;
+    margin-top: 50px;
+    margin-bottom: 10px;
 }

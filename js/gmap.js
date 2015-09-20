@@ -67,7 +67,7 @@ function initialize() {
             infoList.append($('<li class="Name">').text(shopName));
             infoList.append($('<li>').append($('<span>').text('営業時間：'))
                             .append($('<span>').text(openTime)));
-            infoList.append($('<li>').append($('<img>').attr('src', image)));
+            infoList.append($('<li class="ImageBox">').append($('<img>').attr('src', image)));
             infoList.append($('<li>').append($('<span>').text('カテゴリー：'))
                             .append($('<span>').text(category)));                            
             var contentString="<dl id='infowin1'><dt>" + shopName + "</dt><dd>営業時間：" + openTime + "</dd></dl>";
