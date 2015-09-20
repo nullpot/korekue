@@ -42,7 +42,7 @@ $data['latitude']  = $choseShop['latitude'];
 $data['longitude'] = $choseShop['longitude'];
 $data['category']  = ($choseShop['category'] == ",") ? "未指定" : $choseShop['category'];
 $data['tel']       = ($choseShop['tel'] == ",") ? "不明" : $choseShop['tel'];
-$data['opentime']  = ($choseShop['opentime'] == ",") ? "不明" : $choseShop['opentime'];
+$data['opentime']  = ($choseShop['opentime'] == ",") ? "不明" : strip_tags($choseShop['opentime']);
 $data['lunch']     = (empty($choseShop['lunch'])) ? "不明" : $choseShop['lunch'];
 $data['image_url'] = (empty(get_object_vars($choseShop['image_url'])['shop_image1'])) ? "./images/noimg.jpg" : get_object_vars($choseShop['image_url'])['shop_image1'];
 
