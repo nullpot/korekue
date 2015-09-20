@@ -40,18 +40,11 @@ $choseShop = get_object_vars($shops[$rand]);
 $data['name']      = $choseShop['name'];
 $data['latitude']  = $choseShop['latitude'];
 $data['longitude'] = $choseShop['longitude'];
-$data['category']  = $choseShop['category'];
-$data['tel']       = $choseShop['tel'];
-$data['opentime']  = $choseShop['opentime'];
-$data['lunch']     = $choseShop['lunch'];
-$data['image_url'] = get_object_vars($choseShop['image_url'])['shop_image1'];
-
-if(empty($data['image_url'])){
-    $data['image_url'] = "./images/noimg.jpg";
-}
-if(empty($data['lunch'])){
-    $data['lunch'] = "情報無し";
-}
+$data['category']  = (empty($choseShop['category'])) ? "未指定" : $choseShop['category'];
+$data['tel']       = (empty($choseShop['tel']))      ? "不明" : $choseShop['tel'];
+$data['opentime']  = (empty($choseShop['opentime'])) ? "不明" : $choseShop['opentime'];
+$data['lunch']     = (empty($choseShop['lunch'])) ? "不明" : $choseShop['lunch'];
+$data['image_url'] = (empty(get_object_vars($choseShop['image_url'])['shop_image1'])) ? "./images/noimg.jpg" : $choseShop['image_url'];
 
 $data = json_encode($data);
 //JSONを返却
