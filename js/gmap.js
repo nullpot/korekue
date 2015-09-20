@@ -64,10 +64,10 @@ function initialize() {
             var category = json[0].category;
 
             var infoList = $('<ul>').addClass('ShopInfo');
-            infoList.append($('<li>').text(shopName));
-            infoList.append($('<li>').text(openTime));
+            infoList.append($('<li class="Name">').text(shopName));
+            infoList.append($('<li>営業時間：').text(openTime));
             infoList.append($('<li>').append($('<img>').attr('src', image)));
-            infoList.append($('<li>').text(category));                            
+            infoList.append($('<li>カテゴリー：').text(category));                            
             var contentString="<dl id='infowin1'><dt>" + shopName + "</dt><dd>営業時間：" + openTime + "</dd></dl>";
             var infowindow=new google.maps.InfoWindow({
                 content: contentString
