@@ -1,14 +1,14 @@
 <?php
 function getXmlData($range){
     $RequestURL = 'http://api.gnavi.co.jp/RestSearchAPI/20150630/?';
-    $APIkey = 'keyid=14c383d2e30f47f282bd9b688c62eb22';
-    $range = '&range='.$range;
-    $latitude = '&latitude=' . $_POST['lat'];
-    $longitude = '&longitude=' . $_POST['lng'];
+    $APIkey     = 'keyid=14c383d2e30f47f282bd9b688c62eb22';
+    $range      = '&range=' . $range;
+    $latitude   = '&latitude=' . $_POST['lat'];
+    $longitude  = '&longitude=' . $_POST['lng'];
 
     //XMLで情報を受け取る
     $ReqURL = $RequestURL . $APIkey . $range . $latitude . $longitude;
-    $xml = simplexml_load_file($ReqURL);
+    $xml    = simplexml_load_file($ReqURL);
     return $xml;
 }
 
