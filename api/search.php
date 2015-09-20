@@ -5,10 +5,9 @@ $range      = '&range=1';
 $latitude   = '&latitude=35.670083';
 $longitude  = '&longitude=139.763267';
 
+//XMLで情報を受け取る
 $ReqURL     = $RequestURL.$APIkey.$range.$latitude.$longitude;
-//simplexmlを使う
 $xml        = simplexml_load_file($ReqURL);
-echo "<pre>";
 
 //ランダムで抜き出すために一時的に配列に格納
 foreach($xml->rest as $item){
@@ -16,7 +15,7 @@ foreach($xml->rest as $item){
 }
 
 //ランダムでお店を選定
-$rand      = mt_rand(0, count($shops));
+$rand      = mt_rand(0, count($shops) - 1);
 $choseShop = $shops[$rand];
 
 //必要な情報をすべて格納する。
@@ -24,5 +23,9 @@ $data['name']      = $choseShop->name;
 $data['latitude']  = $choseShop->latitude;
 $data['longitude'] = $choseShop->longitude;
 $data['category']  = $choseShop->category;
+$data['tel']       = $choseShop->tel;
+$data['opentime']  = $choseShop->opentime;
+$data['image_url']  = $choseShop->image_url->shop_image1;
+$data = json_encode($data);
 
-var_dump($choseShop->category);
+return $data;
