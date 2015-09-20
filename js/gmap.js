@@ -64,7 +64,7 @@ function initialize() {
             var infoList = $('<ul>').addClass('ShopInfo');
             infoList.append($('<li>').text(shopName));
             infoList.append($('<li>').text(openTime));
-            infoList.append($('<li>').append($('<img>').attr('src', $image)));
+            infoList.append($('<li>').append($('<img>').attr('src', image)));
             infoList.append($('<li>').text(category));                            
             
             $('.Gmap').after(infoList);
