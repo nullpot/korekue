@@ -44,7 +44,7 @@ $data['category']  = ($choseShop['category'] == ",") ? "未指定" : $choseShop[
 $data['tel']       = ($choseShop['tel'] == ",") ? "不明" : $choseShop['tel'];
 $data['opentime']  = ($choseShop['opentime'] == ",") ? "不明" : $choseShop['opentime'];
 $data['lunch']     = (empty($choseShop['lunch'])) ? "不明" : $choseShop['lunch'];
-$data['image_url'] = (empty(get_object_vars($choseShop['image_url'])['shop_image1'])) ? "./images/noimg.jpg" : $choseShop['image_url']['shop_image1'];
+$data['image_url'] = (empty(get_object_vars($choseShop['image_url'])['shop_image1'])) ? "./images/noimg.jpg" : get_object_vars($choseShop['image_url'])['shop_image1'];
 
 $data = json_encode($data);
 //JSONを返却
