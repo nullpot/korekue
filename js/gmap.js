@@ -69,6 +69,7 @@ function initialize() {
             var shopName = json[0].name;
             var openTime = json[0].opentime;
             openTime = openTime.replace(/(.*),$/,'$1');
+            var openTimeBr = json[0].opentime_br;
             var image    = json[0].image_url;
             var category = json[0].category;
 
@@ -82,7 +83,7 @@ function initialize() {
             $('.Gmap').after(infoList);
 
             //情報ウィンドウを表示
-            var contentString="<dl id='infowin1'><dt>" + shopName + "</dt><dd>営業時間：" + openTime + "</dd></dl>";
+            var contentString="<dl id='infowin1'><dt>" + shopName + "</dt><dd>営業時間：" + openTimeBr + "</dd></dl>";
             var infowindow=new google.maps.InfoWindow({
                 content: contentString
             });
