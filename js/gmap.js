@@ -55,7 +55,7 @@ function initialize() {
             }
         }).done(function(res){
             var json = $.parseJSON(res)
-            var shopPos = new google.maps.LatLng(json[0].latitude, json[0].longtitude);
+            var shopPos = new google.maps.LatLng(json[0].latitude, json[0].longitude);
             setMarker(shopPos);
             var shopName = json[0].name;
             var openTime = json[0].opentime;
