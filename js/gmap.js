@@ -54,10 +54,20 @@ function initialize() {
                 lng : curLng,
             }
         }).done(function(res){
-            var shopPos = new google.maps.LatLng(res.lat, res.lng);
+            var shopPos = new google.maps.LatLng(res.latitude.0, res.longtitude.0);
             setMarker(shopPos);
-            var shopName = res.shopname;
-            $('.Gmap').after($('<div>').text(shopName));
+            var shopName = res.name.0;
+            var opentime = res.opentime.0;
+            var image    = res.image_url.0;
+            var category = res.category.0;
+
+            var infoList = $('<ul>').addClass('ShopInfo');
+            infoList.append($('<li>').text(shopName));
+            infoList.append($('<li>').text(openTime));
+            infoList.append($('<li>').append($('<img>').attr('src', $image)));
+            infoList.append($('<li>').text(category));                            
+            
+            $('.Gmap').after(infoList);
         });
     };
 
