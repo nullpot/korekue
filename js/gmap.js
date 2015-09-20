@@ -67,6 +67,13 @@ function initialize() {
             infoList.append($('<li>').text(openTime));
             infoList.append($('<li>').append($('<img>').attr('src', image)));
             infoList.append($('<li>').text(category));                            
+            var contentString="<dl id='infowin1'><dt>" + shopName + "</dt><dd>営業時間：" + openTime + "</dd></dl>";
+            var infowindow=new google.maps.InfoWindow({
+                content: contentString
+            });
+            google.maps.event.addListener(g_marker, 'click', function() {
+                infowindow.open(g_map,g_marker);
+            });
             
             $('.Gmap').after(infoList);
         });
