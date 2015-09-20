@@ -34,20 +34,20 @@ foreach($xml->rest as $item){
 
 //ランダムでお店を選定
 $rand      = mt_rand(0, count($shops) - 1);
-$choseShop = $shops[$rand];
+$choseShop = get_object_vars($shops[$rand]);
 
 //必要な情報をすべて格納する。
-$data['name']      = $choseShop->name;
-$data['latitude']  = $choseShop->latitude;
-$data['longitude'] = $choseShop->longitude;
-$data['category']  = $choseShop->category;
-$data['tel']       = $choseShop->tel;
-$data['opentime']  = $choseShop->opentime;
-$data['image_url']  = $choseShop->image_url->shop_image1;
+$data['name']      = $choseShop['name'];
+$data['latitude']  = $choseShop['latitude'];
+$data['longitude'] = $choseShop['longitude'];
+$data['category']  = $choseShop['category'];
+$data['tel']       = $choseShop['tel'];
+$data['opentime']  = $choseShop['opentime'];
+//$data['image_url'] = $choseShop->image_url['shop_image1'];
 
-if($data['image_url'] == "") {
+//if($data['image_url'] == "") {
     $data['image_url'] = "./images/noimg.jpg";
-}
+//}
 
 $data = json_encode($data);
 //JSONを返却
