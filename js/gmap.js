@@ -58,6 +58,7 @@ function initialize() {
             setMarker(shopPos);
             var shopName = json[0].name;
             var openTime = json[0].opentime;
+            openTime = openTime.replace(/(.*),$/,'$1');
             var image    = json[0].image_url;
             var category = json[0].category;
 
