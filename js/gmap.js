@@ -53,22 +53,26 @@ function initialize() {
                     .addClass('CenterMiddle')
             );
 
-            var searchKorekue(pos){
+            var searchKorekue(curLat, curLng){
                 $.ajax({
                     url : 'search.php',
                     type : 'POST',
                     data : {
-                        lat : pos.lat(),
-                        lng : pos.lng(),
+                        lat : curLat,
+                        lng : curLng,
                     }
-                }).done(function(){
+                }).done(function(res){
+                    var shopPos = new google.maps.LatLng(res.lat, res.lng);
+                    setMarker(shopPos);
+                    var shopName = res.shopname;
+                    $('.Gmap').after($('<div>').text(showName));
                 });
             };
 
             var success = function(ev){
                 g_myLatlng = new google.maps.LatLng(ev.coords.latitude, ev.coords.longitude);
                 g_map.setCenter(g_myLatlng);
-                searchKorekue(g_myLatlng);
+                searchKorekue(ev.coords.latitude, ev.coords.longitude);
                 setMarker();
                 md.fadeOut("200", function(){
                     md.remove();
