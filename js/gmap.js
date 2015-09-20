@@ -9,18 +9,11 @@ var g_myLatlng;
 function initialize() {
     var locateFlg = false;
 
-    if( $('#map_canvas').data('lat') === undefined
-     || $('#map_canvas').data('lng') === undefined ){
-        //初期値
-        g_myLatlng = new google.maps.LatLng(
-            35.658824, 139.745422  //東京タワー
-        );
-        locateFlg = true;
-    }else{
-        var lat = parseFloat($('#map_canvas').data('lat'));
-        var lng = parseFloat($('#map_canvas').data('lng'));
-        g_myLatlng = new google.maps.LatLng(lat, lng);
-    }
+    //初期値
+    g_myLatlng = new google.maps.LatLng(
+        35.658824, 139.745422  //東京タワー
+    );
+
     var mapOptions = {
         zoom: 17,
         disableDefaultUI: true,
@@ -39,85 +32,56 @@ function initialize() {
             animation: google.maps.Animation.DROP,
             position: g_myLatlng
         });
-        google.maps.event.addListener(g_marker, 'click', toggleBounce);
+//        google.maps.event.addListener(g_marker, 'click', toggleBounce);
     };
 
-    if(locateFlg){
-        // 現在地取得
-        if( navigator ){
+    if( !navigator ){
+        $('#modal_bk .CenterMiddle').text('うまく動きません!!!');
+        return;
+    }
+    
+    var md = $('<div>').attr('id','modal_bk');
+    md.append(
+        $('<div>').text('現在地を取得中です').addClass('CenterMiddle')
+    );
 
-            var md = $('<div>').attr('id','modal_bk');
-            md.append(
-                $('<div>')
-                    .text('現在地を取得中です')
-                    .addClass('CenterMiddle')
-            );
-
-            var searchKorekue = function(curLat, curLng){
-                $.ajax({
-                    url : 'api/search.php',
-                    type : 'POST',
-                    data : {
-                        lat : curLat,
-                        lng : curLng,
-                    }
-                }).done(function(res){
-                    var shopPos = new google.maps.LatLng(res.lat, res.lng);
-                    setMarker(shopPos);
-                    var shopName = res.shopname;
-                    $('.Gmap').after($('<div>').text(shopName));
-                });
-            };
-
-            var success = function(ev){
-                g_myLatlng = new google.maps.LatLng(ev.coords.latitude, ev.coords.longitude);
-                g_map.setCenter(g_myLatlng);
-                searchKorekue(ev.coords.latitude, ev.coords.longitude);
-                setMarker();
-                md.fadeOut("200", function(){
-                    md.remove();
-                });
-            };
-            var error = function(ev){
-                $('#modal_bk .CenterMiddle').text('現在地の取得に失敗しました');
-                setMarker();
-                md.fadeOut("200", function(){
-                    md.remove();
-                });
+    var searchKorekue = function(curLat, curLng){
+        $.ajax({
+            url : 'api/search.php',
+            type : 'POST',
+            data : {
+                lat : curLat,
+                lng : curLng,
             }
+        }).done(function(res){
+            var shopPos = new google.maps.LatLng(res.lat, res.lng);
+            setMarker(shopPos);
+            var shopName = res.shopname;
+            $('.Gmap').after($('<div>').text(shopName));
+        });
+    };
 
-            $('body').append(md);
-            navigator.geolocation.getCurrentPosition(
-                success, error
-            );
-        }else{
-            locateFlg = false;
-        }
-    }
-    if( !locateFlg ){
+    var success = function(ev){
+        g_myLatlng = new google.maps.LatLng(ev.coords.latitude, ev.coords.longitude);
+        g_map.setCenter(g_myLatlng);
+        searchKorekue(ev.coords.latitude, ev.coords.longitude);
         setMarker();
+        md.fadeOut("200", function(){
+            md.remove();
+        });
+    };
+    var error = function(ev){
+        $('#modal_bk .CenterMiddle').text('現在地の取得に失敗しました');
+        setMarker();
+        md.fadeOut("200", function(){
+            md.remove();
+        });
     }
 
-    //地名検索ボタン
-    $('#searchMapBtn').on('click', $.proxy(function(ev){
-        var searchText = $('#searchMapText').val();
-        searchText = searchText.replace(/^\s*/,'').replace(/\s*$/,'');
-        if( searchText.length == 0 ){
-            return;
-        }
-
-        if( g_coder ){
-            g_coder.geocode({
-                address: searchText,
-                region: 'ja',
-            }, function(res, st){
-                if( st == google.maps.GeocoderStatus.OK ){
-                    g_map.setCenter(res[0].geometry.location);
-                    g_marker.setPosition(res[0].geometry.location);
-                }
-            });
-        }
-    }, this));
+    $('body').append(md);
+    navigator.geolocation.getCurrentPosition(
+        success, error
+    );
 }
         
 function addMarker(id, location){
