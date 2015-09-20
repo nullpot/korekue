@@ -66,21 +66,21 @@ function initialize() {
 
             var infoList = $('<ul>').addClass('ShopInfo');
             infoList.append($('<li class="Name">').text(shopName));
-            infoList.append($('<li>').append($('<span>').addClass('Label').text('営業時間：'))
+            infoList.append($('<li>').append($('<span>').text('営業時間：'))
                             .append($('<span>').text(openTime)));
-            infoList.append($('<li>').append($('<img>').attr('src', image)));
-            infoList.append($('<li>').append($('<span>').addClass('Label').text('カテゴリー：'))
+            infoList.append($('<li class="ImageBox">').append($('<img>').attr('src', image)));
+            infoList.append($('<li>').append($('<span>').text('カテゴリー：'))
                             .append($('<span>').text(category)));
             $('.Gmap').after(infoList);
 
-            //情報ウィンドウの表示
+            //情報ウィンドウを表示
             var contentString="<dl id='infowin1'><dt>" + shopName + "</dt><dd>営業時間：" + openTime + "</dd></dl>";
             var infowindow=new google.maps.InfoWindow({
                 content: contentString
             });
             google.maps.event.addListener(g_marker, 'click', function() {
                 infowindow.open(g_map,g_marker);
-            });
+            });            
         });
     };
 
