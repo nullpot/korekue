@@ -2,8 +2,8 @@
 $RequestURL = 'http://api.gnavi.co.jp/RestSearchAPI/20150630/?';
 $APIkey     = 'keyid=14c383d2e30f47f282bd9b688c62eb22';
 $range      = '&range=1';
-$latitude   = '&latitude=35.670083';
-$longitude  = '&longitude=139.763267';
+$latitude   = '&latitude='.$_POST['lat'];
+$longitude  = '&longitude='.$_POST['lng'];
 
 //XMLで情報を受け取る
 $ReqURL     = $RequestURL.$APIkey.$range.$latitude.$longitude;
@@ -26,6 +26,10 @@ $data['category']  = $choseShop->category;
 $data['tel']       = $choseShop->tel;
 $data['opentime']  = $choseShop->opentime;
 $data['image_url']  = $choseShop->image_url->shop_image1;
-$data = json_encode($data);
 
+if($data['image_url'] == null) {
+    $data['image_url'] = "./images/noimg.jpg";
+}
+
+$data = json_encode($data);
 return $data;
