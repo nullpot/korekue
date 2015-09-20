@@ -54,12 +54,12 @@ function initialize() {
                 lng : curLng,
             }
         }).done(function(res){
-            var shopPos = new google.maps.LatLng(res.latitude[1], res.longtitude[1]);
+            var shopPos = new google.maps.LatLng(res.latitude, res.longtitude);
             setMarker(shopPos);
-            var shopName = res.name[1];
-            var opentime = res.opentime[1];
-            var image    = res.image_url[1];
-            var category = res.category[1];
+            var shopName = res.name;
+            var opentime = res.opentime;
+            var image    = res.image_url;
+            var category = res.category;
 
             var infoList = $('<ul>').addClass('ShopInfo');
             infoList.append($('<li>').text(shopName));
