@@ -32,4 +32,4 @@ if($data['image_url'] == null) {
 }
 
 $data = json_encode($data);
-return $data;
+echo $data;
