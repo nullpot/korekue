@@ -43,10 +43,14 @@ $data['longitude'] = $choseShop['longitude'];
 $data['category']  = $choseShop['category'];
 $data['tel']       = $choseShop['tel'];
 $data['opentime']  = $choseShop['opentime'];
+$data['lunch']     = $choseShop['lunch'];
 $data['image_url'] = get_object_vars($choseShop['image_url'])['shop_image1'];
 
 if(empty($data['image_url'])){
     $data['image_url'] = "./images/noimg.jpg";
+}
+if(empty($data['lunch'])){
+    $data['lunch'] = "情報無し";
 }
 
 $data = json_encode($data);
