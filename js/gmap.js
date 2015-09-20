@@ -55,7 +55,7 @@ function initialize() {
 
             var searchKorekue = function(curLat, curLng){
                 $.ajax({
-                    url : 'search.php',
+                    url : 'api/search.php',
                     type : 'POST',
                     data : {
                         lat : curLat,
