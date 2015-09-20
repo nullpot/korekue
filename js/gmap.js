@@ -53,7 +53,7 @@ function initialize() {
                     .addClass('CenterMiddle')
             );
 
-            var searchKorekue(curLat, curLng){
+            var searchKorekue = function(curLat, curLng){
                 $.ajax({
                     url : 'search.php',
                     type : 'POST',
