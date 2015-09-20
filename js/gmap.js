@@ -39,13 +39,15 @@ function initialize() {
     };
 
     if( !navigator ){
-        $('#modal_bk .CenterMiddle').text('うまく動きません!!!');
+        $('.Gmap').after(
+            $('<div>').text('位置情報が取得できませんでした<br>位置情報を使用可能にしてリロードしてください')
+        );
         return;
     }
     
     var md = $('<div>').attr('id','modal_bk');
     md.append(
-        $('<div>').text('現在地を取得中です').addClass('CenterMiddle')
+        $('<div>').text('現在地を取得中').addClass('CenterMiddle')
     );
 
     var searchKorekue = function(curLat, curLng){
