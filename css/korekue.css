@@ -28,4 +28,10 @@ div.CenterMiddle {
     height: 100%;
 }
 
-
+.ShopInfo{
+    margin-left: 0;
+    padding-left : 0;
+}
+.container img{
+    width: 100%;
+}
