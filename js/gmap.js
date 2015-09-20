@@ -47,19 +47,19 @@ function initialize() {
 
     var searchKorekue = function(curLat, curLng){
         $.ajax({
-            url : 'api/search.php',
+            url : 'http://korekue.nullpot.com/api/search.php',
             type : 'POST',
             data : {
                 lat : curLat,
                 lng : curLng,
             }
         }).done(function(res){
-            var shopPos = new google.maps.LatLng(res.latitude.0, res.longtitude.0);
+            var shopPos = new google.maps.LatLng(res.latitude[1], res.longtitude[1]);
             setMarker(shopPos);
-            var shopName = res.name.0;
-            var opentime = res.opentime.0;
-            var image    = res.image_url.0;
-            var category = res.category.0;
+            var shopName = res.name[1];
+            var opentime = res.opentime[1];
+            var image    = res.image_url[1];
+            var category = res.category[1];
 
             var infoList = $('<ul>').addClass('ShopInfo');
             infoList.append($('<li>').text(shopName));
