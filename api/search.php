@@ -38,8 +38,8 @@ $choseShop = get_object_vars($shops[$rand]);
 
 //必要な情報をすべて格納する。
 $data['name']      = $choseShop['name'];
-$data['latitude']  = $choseShop['latitude'];
-$data['longitude'] = $choseShop['longitude'];
+$data['latitude']  = "[".$choseShop['latitude'];
+$data['longitude'] = $choseShop['longitude']."]";
 $data['category']  = $choseShop['category'];
 $data['tel']       = $choseShop['tel'];
 $data['opentime']  = $choseShop['opentime'];
