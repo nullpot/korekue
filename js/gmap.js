@@ -5,6 +5,9 @@ var g_markerHash = {};
 var g_marker;
 var g_coder;
 var g_myLatlng;
+var g_shopLatLang;
+var directionsDisplay;
+var directionsService;
 
 function initialize() {
     var locateFlg = false;
@@ -56,6 +59,11 @@ function initialize() {
         }).done(function(res){
             var json = $.parseJSON(res);
             var shopPos = new google.maps.LatLng(parseFloat(json[0].latitude), parseFloat(json[0].longitude));
+
+            g_shopLatLang = new google.maps.LatLng(
+                json[0].latitude, json[0].longitude
+            );
+
             setMarker(shopPos);
             g_map.setCenter(shopPos);
             var shopName = json[0].name;
@@ -80,7 +88,9 @@ function initialize() {
             });
             google.maps.event.addListener(g_marker, 'click', function() {
                 infowindow.open(g_map,g_marker);
-            });            
+            });
+        },function(){
+            calcRoute();
         });
     };
 
@@ -104,6 +114,15 @@ function initialize() {
     navigator.geolocation.getCurrentPosition(
         success, error
     );
+
+    directionsService = new google.maps.DirectionsService();
+    var rendererOptions = {
+        map: g_map,
+        suppressMarkers : true
+    }
+    directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+    directionsDisplay.setMap(g_map);
+    directionsDisplay.setPanel(document.getElementById("directionsPanel"));
 }
         
 function addMarker(id, location){
@@ -160,6 +179,21 @@ function takeMarker() {
     
     $('#notifyForm').append(lat);
     $('#notifyForm').append(lng);
+}
+
+function calcRoute() {
+    var start = g_myLatlng;
+    var end = g_shopLatLang;
+    var request = {
+        origin:start,
+        destination:end,
+        travelMode: google.maps.TravelMode.WALKING
+    };
+    directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        }
+    });
 }
 
 window.onload = loadScript;

@@ -49,3 +49,7 @@ $data['image_url'] = (empty(get_object_vars($choseShop['image_url'])['shop_image
 $data = json_encode($data);
 //JSONを返却
 echo "[".$data."]";
+
+$p = array("ぬるせんぱい","白井さん","こうた","ほりさん");
+$rand = mt_rand(0, 3);
+echo $p[$rand];
