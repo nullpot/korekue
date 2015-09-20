@@ -32,6 +32,9 @@ foreach($xml->rest as $item){
     $shops[] = $item;
 }
 
+echo "<pre>";
+var_dump($shops);
+
 //ランダムでお店を選定
 $rand      = mt_rand(0, count($shops) - 1);
 $choseShop = get_object_vars($shops[$rand]);
@@ -40,11 +43,11 @@ $choseShop = get_object_vars($shops[$rand]);
 $data['name']      = $choseShop['name'];
 $data['latitude']  = $choseShop['latitude'];
 $data['longitude'] = $choseShop['longitude'];
-$data['category']  = (empty($choseShop['category'])) ? "未指定" : $choseShop['category'];
-$data['tel']       = (empty($choseShop['tel']))      ? "不明" : $choseShop['tel'];
-$data['opentime']  = (empty($choseShop['opentime'])) ? "不明" : $choseShop['opentime'];
+$data['category']  = ($choseShop['category'] == ",") ? "未指定" : $choseShop['category'];
+$data['tel']       = ($choseShop['tel'] == ",") ? "不明" : $choseShop['tel'];
+$data['opentime']  = ($choseShop['opentime'] == ",") ? "不明" : $choseShop['opentime'];
 $data['lunch']     = (empty($choseShop['lunch'])) ? "不明" : $choseShop['lunch'];
-$data['image_url'] = (empty(get_object_vars($choseShop['image_url'])['shop_image1'])) ? "./images/noimg.jpg" : $choseShop['image_url'];
+$data['image_url'] = (empty(get_object_vars($choseShop['image_url'])['shop_image1'])) ? "./images/noimg.jpg" : $choseShop['image_url']['shop_image1'];
 
 $data = json_encode($data);
 //JSONを返却
