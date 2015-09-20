@@ -57,7 +57,7 @@ function initialize() {
             var shopPos = new google.maps.LatLng(res.latitude, res.longtitude);
             setMarker(shopPos);
             var shopName = res.name;
-            var opentime = res.opentime;
+            var openTime = res.opentime;
             var image    = res.image_url;
             var category = res.category;
 
