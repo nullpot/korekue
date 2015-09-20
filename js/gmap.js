@@ -65,7 +65,7 @@ function initialize() {
                     var shopPos = new google.maps.LatLng(res.lat, res.lng);
                     setMarker(shopPos);
                     var shopName = res.shopname;
-                    $('.Gmap').after($('<div>').text(showName));
+                    $('.Gmap').after($('<div>').text(shopName));
                 });
             };
 
