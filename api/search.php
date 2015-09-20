@@ -5,9 +5,10 @@ function getXmlData($range){
     $range      = '&range=' . $range;
     $latitude   = '&latitude=' . $_POST['lat'];
     $longitude  = '&longitude=' . $_POST['lng'];
+    $coordinates = '&coordinates_mode=2';
 
     //XMLで情報を受け取る
-    $ReqURL = $RequestURL . $APIkey . $range . $latitude . $longitude;
+    $ReqURL = $RequestURL . $APIkey . $range . $latitude . $longitude . $coordinates;
     $xml    = simplexml_load_file($ReqURL);
     return $xml;
 }
