@@ -5,6 +5,10 @@
     src: url('/fonts/FlopDesignFONT.otf') format('opentype');
 }
 
+h1.text-center {
+    font-size: calc(1em + 50px);
+}
+
 body {
     font-family: FlopDesignFONT;
     padding-bottom: 50px;
