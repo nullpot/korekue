@@ -53,13 +53,13 @@ function initialize() {
                     .addClass('CenterMiddle')
             );
 
-            var rsearchKorekue(pos){
+            var searchKorekue(pos){
                 $.ajax({
                     url : 'search.php',
                     type : 'POST',
                     data : {
-                        lat : pos.lat,
-                        lng : pos.png
+                        lat : pos.lat(),
+                        lng : pos.lng(),
                     }
                 }).done(function(){
                 });
