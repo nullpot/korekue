@@ -28,6 +28,7 @@ $data['opentime']  = $choseShop->opentime;
 $data['image_url']  = $choseShop->image_url->shop_image1;
 
 if($data['image_url'] == null) {
+if($data['image_url'] == "") {
     $data['image_url'] = "./images/noimg.jpg";
 }
 
